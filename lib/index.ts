@@ -9,9 +9,25 @@ interface ISendArguments {
 }
 
 interface IVerifyArguments {
-  token: number;
+  token: number | string;
 }
 
+interface ISendSuccessResponse {
+  status: number;
+  token: string;
+}
+
+interface IVerifyResponse {
+  status: number;
+  amount: string;
+  transId: number;
+  factorNumber?: any;
+  mobile: string;
+  description: string;
+  cardNumber: string;
+  traceNumber: string;
+  message: string;
+}
 /**
  * this class proved all of your required functions to make a successful payment using pay.ir gateway
  */
@@ -57,7 +73,10 @@ export default class PayIrTypescript {
   /**
    * get payment url
    */
-  public send = (args: ISendArguments, getRedirect: boolean = false) => {
+  public send = (
+    args: ISendArguments,
+    getRedirect: boolean = false
+  ): Promise<string | ISendSuccessResponse> => {
     return new Promise((resolve, reject) => {
       if (typeof args.amount !== 'number' || args.amount < 1000) {
         throw new Error(
@@ -88,7 +107,7 @@ export default class PayIrTypescript {
   /**
    * Verify successful  payment token
    */
-  public verify = (args: IVerifyArguments) => {
+  public verify = (args: IVerifyArguments): Promise<IVerifyResponse> => {
     return new Promise((resolve, reject) => {
       if (typeof args.token !== 'number') {
         reject(new Error('token must be a number'));

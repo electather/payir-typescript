@@ -1,6 +1,6 @@
 {
   "name": "payir-typescript",
-  "version": "1.0.0",
+  "version": "1.0.5",
   "description": "",
   "main": "build/lib/index.js",
   "types": "build/lib/index.d.ts",
@@ -34,7 +34,7 @@
   },
   "homepage": "https://github.com/electather/payir-typescript",
   "files": [
-    "lib/**/*"
+    "build/lib/**/*"
   ],
   "devDependencies": {
     "@types/axios": "^0.14.0",
