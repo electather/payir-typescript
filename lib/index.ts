@@ -12,12 +12,18 @@ interface IVerifyArguments {
   token: number;
 }
 
+/**
+ * this class proved all of your required functions to make a successful payment using pay.ir gateway
+ */
 export default class PayIrTypescript {
   private readonly API_KEY: string;
   private readonly sendEndPoint = 'https://pay.ir/pg/send';
   private readonly verifyEndPoint = 'https://pay.ir/pg/verify';
   private readonly gateway = 'https://pay.ir/pg/';
-
+  /**
+   * Creates an instance of pay ir typescript.
+   * @param api api code received from pay.ir
+   */
   constructor(api: string) {
     if (api === '' || typeof api !== 'string') {
       throw new Error(
@@ -26,7 +32,9 @@ export default class PayIrTypescript {
     }
     this.API_KEY = api;
   }
-
+  /**
+   * Handle errors of pay ir typescript
+   */
   private handleErrors = (reject: Function, error: any) => {
     if (error.response) {
       // The request was made and the server responded with a status code
@@ -46,7 +54,9 @@ export default class PayIrTypescript {
       );
     }
   };
-
+  /**
+   * get payment url
+   */
   public send = (args: ISendArguments, getRedirect: boolean = false) => {
     return new Promise((resolve, reject) => {
       if (typeof args.amount !== 'number' || args.amount < 1000) {
@@ -75,7 +85,9 @@ export default class PayIrTypescript {
         });
     });
   };
-
+  /**
+   * Verify successful  payment token
+   */
   public verify = (args: IVerifyArguments) => {
     return new Promise((resolve, reject) => {
       if (typeof args.token !== 'number') {

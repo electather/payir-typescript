@@ -1,1 +1,1 @@
-# payir-typescript
+# pay.ir node.js typescript library

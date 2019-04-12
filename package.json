@@ -2,7 +2,8 @@
   "name": "pay-ir",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "build/lib/index.js",
+  "types": "build/lib/index.d.ts",
   "scripts": {
     "clean": "rimraf coverage build tmp",
     "build": "tsc -p tsconfig.release.json",
@@ -10,12 +11,31 @@
     "lint": "tslint -t stylish --project \"tsconfig.json\"",
     "server": "nodemon ./build/src/main.js"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": [
+    "typescript",
+    "payir"
+  ],
+  "author": "Omid Astaraki",
+  "license": "MIT",
   "dependencies": {
     "axios": "^0.18.0"
   },
+  "prepare": "npm run build",
+  "prepublishOnly": "npm run lint",
+  "preversion": "npm run lint",
+  "version": "git add -A src",
+  "postversion": "git push && git push --tags",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/electather/payir-typescript.git"
+  },
+  "bugs": {
+    "url": "https://github.com/electather/payir-typescript/issues"
+  },
+  "homepage": "https://github.com/electather/payir-typescript",
+  "files": [
+    "lib/**/*"
+  ],
   "devDependencies": {
     "@types/axios": "^0.14.0",
     "typescript": "^3.4.3"
