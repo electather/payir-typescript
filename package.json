@@ -1,5 +1,5 @@
 {
-  "name": "pay-ir",
+  "name": "payir-typescript",
   "version": "1.0.0",
   "description": "",
   "main": "build/lib/index.js",
@@ -38,6 +38,9 @@
   ],
   "devDependencies": {
     "@types/axios": "^0.14.0",
+    "prettier": "^1.16.4",
+    "tslint": "^5.15.0",
+    "tslint-config-prettier": "^1.18.0",
     "typescript": "^3.4.3"
   }
 }
