@@ -20,7 +20,7 @@ first you need to pass your API key to the constructor.
 Using npm:
 
 ```bash
-npm install axios
+npm install payir-typescript
 ```
 
 ## Example
@@ -28,13 +28,13 @@ npm install axios
 import library using
 
 ```javascript
-const Pay = require('payir-typescript');
+const Pay = require("payir-typescript");
 ```
 
 or:
 
 ```javascript
-import PayIrTypescript from 'payir-typescript';
+import PayIrTypescript from "payir-typescript";
 ```
 
 then pass the API key to the constructor
@@ -51,13 +51,15 @@ this method accepts payment parameters as an object and returns a promise.
 
 ```javascript
 pay
-  .send({
-    amount: AMOUNT,
-    redirect: REDIRECT_URL
-  })
-  .then(item => {
-    const val = <string>item;
-    console.log(val);
+  .sendRequest(
+    {
+      amount: AMOUNT,
+      redirect: REDIRECT_URL
+    },
+    true
+  )
+  .then(redirectUrl => {
+    console.log(redirectUrl);
   })
   .catch(e => console.log(e));
 ```
@@ -65,7 +67,7 @@ pay
 or using `async/await` we can have
 
 ```javascript
-const payment = await pay.send({
+const payment = await pay.sendRequest({
   amount: AMOUNT,
   redirect: REDIRECT_URL
 });
@@ -80,7 +82,7 @@ this method accepts verify parameters as an object and returns a promise.
 ```javascript
 pay
   .verify({
-    token: 'token'
+    token: "token"
   })
   .then(item => console.log(item))
   .catch(e => console.log(e));
@@ -90,7 +92,7 @@ or using `async/await` we can have
 
 ```javascript
 const payment = await pay.verify({
-  token: 'token'
+  token: "token"
 });
 ```
 
