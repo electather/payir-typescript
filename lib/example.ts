@@ -1,11 +1,11 @@
-import PayIrTypescript from './index';
+import PayIrTypescript from "./index";
 
-const pay = new PayIrTypescript('testa');
+const pay = new PayIrTypescript("testa");
 
 pay
   .send({
     amount: 1000,
-    redirect: 'https://www.typescriptlang.org/docs/handbook/modules.html'
+    redirect: "https://www.someWebsite.com/callback"
   })
   .then(item => {
     const val = <string>item;
@@ -15,7 +15,16 @@ pay
 
 pay
   .verify({
-    token: 'token'
+    token: "token"
   })
   .then(item => console.log(item))
   .catch(e => console.log(e));
+
+pay
+  .sendRequest(
+    { amount: 1000, redirect: "https://www.someWebsite.com/callback" },
+    false
+  )
+  .then(item => {
+    console.log(item);
+  });
