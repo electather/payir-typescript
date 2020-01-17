@@ -9,7 +9,7 @@ export interface ISendArguments {
 }
 
 export interface IVerifyArguments {
-  token: number | string;
+  token: string;
 }
 
 export interface ISendSuccessResponse {
@@ -154,8 +154,8 @@ export default class PayIrTypescript {
    */
   public verify = (args: IVerifyArguments): Promise<IVerifyResponse> => {
     return new Promise((resolve, reject) => {
-      if (typeof args.token !== "number") {
-        reject(new Error("token must be a number"));
+      if (typeof args.token !== "string") {
+        reject(new Error("token must be a string"));
       }
 
       Axios.post(this.verifyEndPoint, { ...args, api: this.API_KEY })

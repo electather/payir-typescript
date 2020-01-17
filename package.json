@@ -1,6 +1,6 @@
 {
   "name": "payir-typescript",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "",
   "main": "build/lib/index.js",
   "types": "build/lib/index.d.ts",
@@ -9,11 +9,11 @@
     "build": "tsc -p tsconfig.release.json",
     "build:watch": "tsc -w -p tsconfig.release.json",
     "lint": "tslint -t stylish --project \"tsconfig.json\"",
-    "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
+    "format": "prettier --write \"lib/**/*.ts\" \"lib/**/*.js\"",
     "prepare": "npm run build",
     "prepublishOnly": "npm run lint",
     "preversion": "npm run lint",
-    "version": "npm run format && git add -A src",
+    "version": "npm run format && git add -A lib",
     "postversion": "git push && git push --tags"
   },
   "keywords": [
